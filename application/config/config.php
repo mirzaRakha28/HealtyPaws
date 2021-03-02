@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | URL to your CodeIgniter root. Typically this will be your base URL,
 | WITH a trailing slash:
 |
-|	http://example.com/
+|	http://example.com/mi
 |
 | WARNING: You MUST set this value!
 |
@@ -475,11 +475,6 @@ $config['csrf_exclude_uris'] = array();
 | by the output class.  Do not 'echo' any values with compression enabled.
 |
 */
-$config['compress_output'] = FALSE;
-$config['protocol'] = 'sendmail';
-$config['mailpath'] = '/usr/sbin/sendmail';
-$config['charset'] = 'iso-8859-1';
-$config['wordwrap'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------

@@ -41,8 +41,27 @@ class Register extends CI_Controller {
 
 		// $this->email->send();
 		$this->load->view('user/template/header');
-        $this->load->view('user/login');
+        $this->load->view('user/register');
         $this->load->view('user/template/footer');
 
+	}
+	public function action_register(){
+		$data = array(
+			"email"=> $this->input->post('email'),
+		   "password"=>$this->input->post('password'),
+		   "name"=> $this->input->post('name'),
+		   "password"=>$this->input->post('pass'),
+		   "re-pass"=> $this->input->post('re-pass'),
+		   "alamat"=>$this->input->post('alamat'),
+	   );
+	   if($data["password"] != $data['re-pass']){
+		redirect("register");
+	   }else{
+		   if($this->Model_user->find_data($data)){
+			   redirect("register");
+		   }else{
+			   
+		   }
+	   }
 	}
 }

@@ -58,7 +58,7 @@
         </ul>
       </nav><!-- .nav-menu -->
 
-      <a href="courses.html" class="get-started-btn">Login</a>
+      <a href="<?=base_url()?>login" class="get-started-btn">Login</a>
 
     </div>
   </header><!-- End Header -->

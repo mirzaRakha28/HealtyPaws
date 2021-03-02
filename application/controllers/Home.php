@@ -21,25 +21,26 @@ class Home extends CI_Controller {
 	public function index()
 	{
 
-		$config['protocol']    = 'smtp';
-        $config['smtp_host']    = 'ssl://smtp.gmail.com';
-        $config['smtp_port']    = '465';
-        $config['smtp_timeout'] = '7';
-        $config['smtp_user']    = 'cshealthypaws@gmail.com';
-        $config['smtp_pass']    = 'healthypaws123';
-        $config['charset']    = 'utf-8';
-        $config['newline']    = "\r\n";
-        $config['mailtype'] = 'text'; // or html
-        $config['validation'] = TRUE; // bool whether to validate email or not      
+		// $config['protocol']    = 'smtp';
+        // $config['smtp_host']    = 'ssl://smtp.gmail.com';
+        // $config['smtp_port']    = '465';
+        // $config['smtp_timeout'] = '7';
+        // $config['smtp_user']    = 'cshealthypaws@gmail.com';
+        // $config['smtp_pass']    = 'healthypaws123';
+        // $config['charset']    = 'utf-8';
+        // $config['newline']    = "\r\n";
+        // $config['mailtype'] = 'text'; // or html
+        // $config['validation'] = TRUE; // bool whether to validate email or not      
 
-		$this->load->library('email',$config);
-		$this->email->from('cshealthypaws@gmail.com', 'healthypaws');
-		$this->email->to('mirzarakhadwipradana28@gmail.com');
+// 		$this->load->library('email',$config);
+// 		$this->email->from('cshealthypaws@gmail.com', 'healthypaws');
+// 		$this->email->to('mirzarakhadwipradana28@gmail.com');
 
-		$this->email->subject('Email Test');
-		$this->email->message('Testing the email class.');
+// 		$this->email->subject('Email Test');
+// 		$this->email->message('Testing the email class.');
 
-		$this->email->send();
+// 		$this->email->send();
+// die();
 		$this->load->view('template/header');
         $this->load->view('home');
         $this->load->view('template/footer');

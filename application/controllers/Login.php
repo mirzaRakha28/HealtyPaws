@@ -21,6 +21,7 @@ class Login extends CI_Controller {
 	public function index()
 	{
 
+		
 		// $config['protocol']    = 'smtp';
         // $config['smtp_host']    = 'ssl://smtp.gmail.com';
         // $config['smtp_port']    = '465';
@@ -44,5 +45,37 @@ class Login extends CI_Controller {
         $this->load->view('user/login');
         $this->load->view('user/template/footer');
 
+	}
+	public function action_login(){
+		$data = array(
+			 "email"=> $this->input->post('your_name'),
+			"password"=>$this->input->post('your_pass'),
+		);
+		// $user = $this->Model_user->find_data($data);
+		$user = $this->Model_user->find_data($data);
+        // jika usernya ada
+        if ($user) {
+            // jika usernya aktif
+            if ($user['is_active'] == 1) {
+                // cek password
+                if (password_verify($password, $user['password'])) {
+                    $data = [
+                        'email' => $user['email']
+                    ];
+                    $this->session->set_userdata($data);
+                        redirect('admin');
+                   
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong password!</div>');
+                    redirect('login');
+                }
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">This email has not been activated!</div>');
+                redirect('login');
+            }
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email is not registered!</div>');
+            redirect('login');
+        }
 	}
 }
