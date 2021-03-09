@@ -2,36 +2,25 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Education extends CI_Controller {
-
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
 	public function index()
 	{
 		$data['education'] = $this->Model_education->get_data();
-
+		
+		
+		$data['gambar'] =  $this->Model_user->find_data($_SESSION['id'],"id");
 	
-		$this->load->view('template/header');
-        $this->load->view('list_education',$data);
+		$this->load->view('template/header',$data);
+        $this->load->view('list_education');
         $this->load->view('template/footer');
 
 	}
 	public function artikel($id){
 		$data['education'] = $this->Model_education->find_id($id);
-		$this->load->view('template/header');
-        $this->load->view('artikel',$data);
+		
+		$data['gambar'] =  $this->Model_user->find_data($_SESSION['id'],"id");
+	
+		$this->load->view('template/header',$data);
+        $this->load->view('artikel');
         $this->load->view('template/footer');
 	}
 }

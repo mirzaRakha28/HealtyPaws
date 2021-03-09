@@ -20,7 +20,6 @@
                                 <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
                                 <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password"/>
                             </div>
-                            <?= $this->session->flashdata('regis'); ?>
 
                             <div class="form-group">
                                 <label for="address"><i class="zmdi zmdi-home"></i></label>
