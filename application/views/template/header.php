@@ -182,8 +182,36 @@
 .border-top {
     border-top: 1px solid #dee2e6!important;
 }
+    .item-name {
+      display: block;
+      padding-top: 10px;
+      font-size: 16px;
+    }
+    
+    .item-price {
+      color: $main-color;
+      margin-right: 8px;
+    }
+    
+    .item-quantity {
+      color: $light-text;
+    }
+    #gambar {
+      float: left;
+      margin-right: 12px;
+    }
+    .dropdown-menu {
+      width: 350px !important;
+    
+    }
+    .item-notif {
+      display: block;
+      padding-top: 10px;
+      font-size: 16px;
+    }
 
   </style>
+  
 </head>
 
 <body>
@@ -206,35 +234,41 @@
 
         </ul>
       </nav><!-- .nav-menu -->
-      <?php if($_SESSION['login']){?>
-        <a href="<?=base_url()?>login" class="get-started-btn">Login</a>
-      <?php }else{?>
+     
       <nav class="nav-menu d-none d-lg-block">
         <ul>
         <li>
-          <button class="btn" onclick="openForm()">
-            <i class="bi bi-chat-fill"></i>
-          </button>
+          <a href="<?=base_url()?>home/chat"class="nav-link" >
+              <i class="bi bi-chat-fill"></i>
+          </a>
         </li>
         <li class=" dropdown">
           <a href="<?=base_url()?>login"class="nav-link" data-toggle="dropdown">
             <i class="bi bi-bell-fill"></i> 
           </a>
-          <div class="dropdown-menu ">
+          <div class="dropdown-menu " >
+          <?php foreach($notification as $nt){?>
             <a href="#" class="dropdown-item">
               <!-- Message Start -->
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="d-flex flex-row align-items-center">
-                    <div class="image"> <img src="https://i.imgur.com/jhsYqVT.png" width="70"> <span class="type"><img src="https://i.imgur.com/4lg6mOg.png" width="20"></span> </div>
-                    <div class="d-flex flex-column line-height ml-2"> <span class="font-weight-bold">hannahdat21</span> <span>Can i order online?</span> <i class="bi bi-check"></i> </div>
-                </div>
+              <?php foreach($dokter as $dt){
+                      if($dt->id == $nt->id_dokter){?>
+                <img src="<?= base_url()?>assets/img/dokter/<?= $dt->image?>"width="80" id="gambar" class="rounded-circle" alt="item1" />
+                <span class="item-name">Service : <?= $dt->name?></span>
+              <?php 
+                      }
+                    }?>
+              
+              <span class="item-price"><?= $nt->jam_order?>:00-<?= $nt->jam_selesai?>:00</span>
+              <span class="item-quantity">Rp.<?= number_format($nt->harga,0,',','.')?></span> 
+              <span class="item-notif"><?=$nt->aktif?></span>
               <!-- Message End -->
             </a>
-            </div>
+          <?php } ?>
+          </div>
         </li>
         <li class="nav-item dropdown no-arrow">
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <img src="<?= base_url()."assets/img/user/".$gambar['gambar']?>" class="rounded-circle mr-1" alt="Sharon Lessman" width="20" height="20">    
+        <img src="<?=$gambar['gambar']?>" class="rounded-circle mr-1" alt="<?=$gambar['name']?>" width="20" height="20">    
         </a>
         <!-- Dropdown - User Information -->
         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -257,10 +291,7 @@
           
         </ul>
       </nav>
-        
-      <?php }?>
     </div>
   </header><!-- End Header -->
 
-
-  
+  <main id="main">

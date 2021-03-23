@@ -14,27 +14,31 @@
 
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
         <!--  -->
-        <?php foreach($dokter as $dok){?>
+        <?php 
+        foreach($dokter as $dok){
+                foreach($operasional as $op){
+          ?>
+          <?php if($dok->id == $op->id_dokter){
+                    ?>
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="member">
-              <img src="<?= base_url()?>assets/img/<?= $dok->image?>" class="img-fluid" alt="">
+              <img src="<?= base_url()?>assets/img/dokter/<?= $dok->image?>" width="200"height="200"alt="">
               <div class="member-content">
                 <h4><?= $dok->name?></h4>
-                <?php foreach($operasional as $op){
-                    if($dok->id == $op->id_dokter){
-                    ?>
+                
                     <h6><?= $op->hari?></h6>
-                    <h6><?= $op->jam_buka?> - <?= $op->jam_tutup?></h6>
-                <?php
-                    break;
-                    } 
-                }?>
+                    <h6><?= $op->jam_buka?>:00 - <?= $op->jam_tutup?>:00</h6>
+                    
                 <span>Dokter Hewan</span>
-                <button type="button" class="btn btn-success">Pilih</button>
+                <a href="<?= base_url()."order/?id=".md5($dok->id);?>"><button type="button" class="btn btn-success">Pilih</button></a>
               </div>
               
             </div>
           </div>
+          <?php
+                    break;
+                    } 
+                }?>
         <?php }?>
         <!--  -->
         </div>

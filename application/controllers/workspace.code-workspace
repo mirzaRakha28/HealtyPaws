@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "healtypaws",
+			"path": "..\\.."
+		},
+		{
+			"name": "assets_dokter",
+			"path": "..\\..\\..\\ekselensi\\assets_dokter"
+		}
+	],
+	"settings": {}
+}

@@ -2,7 +2,7 @@
   <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs">
         <div class="container">
-            <img src="<?= base_url()."assets/img/user/".$profil['gambar']?>" class="rounded-circle mr-1" alt="Sharon Lessman" width="200" height="200">
+            <img src="<?=$profil['gambar']?>" class="rounded-circle mr-1" alt="Sharon Lessman" width="200" height="200">
             <div class="mb-auto" style= "">
                 <div class="image-upload">
                     <label for="file-input">

@@ -16,6 +16,8 @@
             $this->db->where('id',$id);
             $this->db->update('user',$data);
         }
-        
+        public function get_data(){
+            return $this->db->get('user')->result();
+        }
     }
 ?>

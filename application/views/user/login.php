@@ -23,12 +23,8 @@
                             </div>
                         </form>
                         <div class="social-login">
-                            <span class="social-label">Or login with</span>
-                            <ul class="socials">
-                                <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
-                                <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
-                                <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
-                            </ul>
+                            <a href="<?= base_url()?>forgot"><span class="social-label">Forgot Password</span></a>
+                            
                         </div>
                     </div>
                 </div>

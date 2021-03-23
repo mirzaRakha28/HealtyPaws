@@ -5,19 +5,56 @@ class Profil extends CI_Controller {
 	public function index()
 	{
 		$data['profil'] = $this->Model_user->find_data($_SESSION['id'],"id");
-	
-		$this->load->view('template/header');
-        $this->load->view('profil',$data);
-        $this->load->view('template/footer');
+		if(isset($_SESSION['id'])&&isset($_SESSION['login'])){
+			$data['gambar'] =  $this->Model_user->find_data($_SESSION['id'],"id");
+			$data['notification'] =  $this->Model_order->find_data("id_user",$_SESSION['id']);
+				if($data['notification']){
+					foreach($data['notification'] as $notif){
+						$sTime = strtotime($notif->tanggal);
+						$eTime = strtotime(date("Y-m-d H:i:s"));
+						$numberDays = abs($sTime-$eTime)/86400;
+						if($numberDays > 0.020833333333333){
+							$notif->aktif = "Expired";
+						}else{
+							$notif->aktif = "Aktif";
+						}
+					}
+				}
+			$this->load->view('template/header',$data);
+			$this->load->view('profil');
+			$this->load->view('template/footer');
+		}else{
+			$this->load->view('template/header',$data);
+			$this->load->view('profil');
+			$this->load->view('template/footer');
+		}
 
 	}
 	public function edit_profil(){
 		$data['profil'] = $this->Model_user->find_data($_SESSION['id'],"id");
-		$data['gambar'] =  $this->Model_user->find_data($_SESSION['id'],"id");
-	
-		$this->load->view('template/header',$data);
-        $this->load->view('edit-profil');
-        $this->load->view('template/footer');
+		if(isset($_SESSION['id'])){
+			$data['gambar'] =  $this->Model_user->find_data($_SESSION['id'],"id");
+			$data['notification'] =  $this->Model_order->find_data("id_user",$_SESSION['id']);
+				if($data['notification']){
+					foreach($data['notification'] as $notif){
+						$sTime = strtotime($notif->tanggal);
+						$eTime = strtotime(date("Y-m-d H:i:s"));
+						$numberDays = abs($sTime-$eTime)/86400;
+						if($numberDays > 0.020833333333333){
+							$notif->aktif = "Expired";
+						}else{
+							$notif->aktif = "Aktif";
+						}
+					}
+				}
+			$this->load->view('template/header',$data);
+			$this->load->view('edit-profil');
+			$this->load->view('template/footer');
+		}else{
+			$this->load->view('template/header',$data);
+			$this->load->view('edit-profil');
+			$this->load->view('template/footer');
+		}
 	}
 
 	public function edit(){
@@ -34,7 +71,9 @@ class Profil extends CI_Controller {
 			redirect('/profil/edit-profil');
 		}
 		if($gambar=''){}else{
-			unlink($_SERVER['DOCUMENT_ROOT'].'/healtypaws/assets/img/user/'.$pass['gambar']);	
+			if($pass['gambar']!= base_url()."/healtypaws/assets/img/user/user.png"){
+				unlink($pass['gambar']);
+			}	
 			$config ['upload_path']='./assets/img/user/';
 			$config ['allowed_types']='jpg|jpeg|png|gif';
 			$this->load->library('upload',$config);
@@ -48,7 +87,7 @@ class Profil extends CI_Controller {
 		$data = array(
 			'name' => $nama,
 			'email' => $email,
-			'gambar' => $gambar,
+			'gambar' =>base_url()."assets/img/user/".$gambar,
 			'password' => md5($password_baru),
 			'telephone' => $telephone,
 			'alamat' => $alamat

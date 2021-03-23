@@ -5,8 +5,10 @@ class Login extends CI_Controller {
 
 	public function index()
 	{
-        if(!$_SESSION['login']){
-            redirect("home");
+        if(isset($_SESSION['id'])){
+            if($_SESSION['id']!=0){
+                redirect("home");
+            }
         }
 		$this->load->view('user/template/header');
         $this->load->view('user/login');
@@ -41,7 +43,7 @@ class Login extends CI_Controller {
 
                 $this->Model_autentifikasi->edit_data(rand(0,99999),$user["id"]);
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">This email has not been activated!</div>');
-                $this->session->data("id",$user['id']);
+                
                 redirect('auth');
             }
         } else {
@@ -50,7 +52,7 @@ class Login extends CI_Controller {
         }
 	}
     public function logout(){
-		$_SESSION['login']= true;
+		$_SESSION['id']= 0;
         redirect("");
 	}
 }

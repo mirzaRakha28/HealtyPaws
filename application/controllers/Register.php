@@ -20,12 +20,14 @@ class Register extends CI_Controller {
 	 */
 	public function index()
 	{
-		if(!$_SESSION['login']){
-            redirect("home");
+		if(isset($_SESSION['id'])){
+            if($_SESSION['id']!=0){
+                redirect("home");
+            }
         }
-		$data['gambar'] =  $this->Model_user->find_data($_SESSION['id'],"id");
+		// $data['gambar'] =  $this->Model_user->find_data($_SESSION['id'],"id");
 	
-		$this->load->view('template/header',$data);
+		$this->load->view('user/template/header');
         $this->load->view('user/register');
         $this->load->view('user/template/footer');
 	}
@@ -37,6 +39,7 @@ class Register extends CI_Controller {
 		   "password"=>md5($this->input->post('pass')),
 		   "telephone" =>$this->input->post('phone'),
 		   "alamat"=>$this->input->post('address'),
+		   "gambar"=>base_url()."assets/img/user/user.png"
 	   );
 	   $repass= md5($this->input->post('re_pass')); 
 	   if($data["password"] != $repass){
