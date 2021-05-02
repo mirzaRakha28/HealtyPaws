@@ -1,15 +1,35 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-require 'C:/xampp/htdocs/healtypaws/vendor/autoload.php';
+require realpath('vendor/autoload.php');
+
 class Admin_dokter extends CI_Controller {
 	public function index()
 	{
+	   // echo realpath('vendor/autoload.php');die();
 		if(isset($_SESSION['id_dokter'])){
             if($_SESSION['id_dokter']!=0){
                 redirect("home");
             }
         }
         $this->load->view('admin_dokter/login');
+	}
+	public function profil(){
+		if(isset($_SESSION['id_dokter'])){
+            if($_SESSION['id_dokter']!=1){
+                redirect('admin_dokter');
+            }else{
+				$data['dokter']= $user = $this->Model_dokter->find_data('id',$_SESSION['id_dokter']);
+				$data['praktek']= $this->Model_operasional->find_dataa('id_dokter',$_SESSION['id_dokter']);
+				
+				$this->load->view('template_dokter/header',$data);
+				$this->load->view('admin_dokter/profil');
+				$this->load->view('template_dokter/footer');				
+			}
+        }
+	
+	}
+	public function edit_jadwal(){
+		var_dump($this->input->post('hari'));die();
 	}
 	public function action_login(){
 		$data = array(
@@ -88,6 +108,7 @@ class Admin_dokter extends CI_Controller {
 	
 	}
 	public function chat(){
+		
 		if(isset($_GET["id_user"])&&isset($_GET["jam_order"])){
 			$data['dokter']= $user = $this->Model_dokter->find_data('id',$_SESSION['id_dokter']);
 			$data['user'] =  $this->Model_user->get_data();
@@ -125,6 +146,8 @@ class Admin_dokter extends CI_Controller {
 		}
 	}
 	public function chat2(){
+		$_GET["id_user"] =69;
+		$_GET["id"]=3;
 		if(isset($_GET["id"])&&isset($_GET["id_user"])){
 			$data['dokter']= $user = $this->Model_dokter->find_data('id',$_SESSION['id_dokter']);
 			$data['user'] =  $this->Model_user->get_data();
@@ -132,7 +155,7 @@ class Admin_dokter extends CI_Controller {
 			$data['chat'] =$this->db->order_by('id','ASC')->get_where('message',['id_participant'=>$_GET['id'],'id_user'=>$_GET['id_user'],'id_dokter'=>$_SESSION['id_dokter']])->result(); 
 			// $data['name']
 			$a=$this->db->get_where('user',['id'=>$_GET['id_user']])->result_array();
-
+			
 			$data['name'] = $a[0]['name'];			
 			$data['gambar'] = $a[0]['gambar'];
 			foreach($data['list_chat'] as $lc){	
@@ -157,7 +180,7 @@ class Admin_dokter extends CI_Controller {
 				
 			}
 			$this->load->view('template_dokter/header',$data);
-			$this->load->view('admin_dokter/chat2');
+			$this->load->view('admin_dokter/chat');
 			$this->load->view('template_dokter/footer');
 		}else{
 			$data['dokter']= $user = $this->Model_dokter->find_data('id',$_SESSION['id_dokter']);

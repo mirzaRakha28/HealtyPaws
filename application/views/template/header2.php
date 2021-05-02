@@ -1,214 +1,63 @@
-
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <title>Mentor Bootstrap Template - Index</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  <link href="<?= base_url()?>assets/img/favicon.png" rel="icon">
-  <link href="<?= base_url()?>assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="<?= base_url()?>assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="<?= base_url()?>assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-  <link href="<?= base_url()?>assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="<?= base_url()?>assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="<?= base_url()?>assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-  <link href="<?= base_url()?>assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="<?= base_url()?>assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="<?= base_url()?>assets/vendor/aos/aos.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="<?= base_url()?>assets/css/style.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
-  <!-- =======================================================
-  * Template Name: Mentor - v2.2.1
-  * Template URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-  <style>
-    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
-
-
-    .image-upload > input {
-  visibility:hidden;
-  width:0;
-  height:0
-}
-
-.top {
-    background-color: #eee;
-    padding: 10px;
-    padding-left: 20px;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px
-}
-
-.bottom {
-    padding: 10px;
-    background-color: #fff;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px
-}
-
-.image {
-    position: relative
-}
-.chat-popup{
-  height: 100%;
-  width: 100%;
-  display: none;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0, 0.9);
-}
-.image .type {
-    position: absolute;
-    left: 49px;
-    bottom: 0;
-    background: #fff;
-    height: 30px;
-    width: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%
-}
-
-.line-height {
-    line-height: 20px
-}
-
-.live {
-    height: 10px;
-    width: 10px;
-    border-radius: 50%;
-    background: green;
-    margin-left: 1px;
-    display: flex;
-    margin-right: 5px
-}
-
-.l-now {
-    font-size: 12px
-}
-
-.dots {
-    height: 10px;
-    width: 10px;
-    border-radius: 50%;
-    background: blue;
-    margin-left: 1px;
-    display: flex;
-    margin-right: 5px
-}
-
-
-
-
-  </style>
-  <style>
-  .content{
-    margin-top:7%;
-  }
-    .chat-online {
-    color: #34ce57
-}
-
-.chat-offline {
-    color: #e4606d
-}
-
-.chat-messages {
-    display: flex;
-    flex-direction: column;
-    max-height: 400px;
-    height: 400px;
-    overflow-y: scroll
-}
-.border-right{
-  display: flex;
-  flex-direction: column;
-    max-height: 550px;
-    height: 550px;
-    overflow-y: scroll
-}
-.chat-message-left,
-.chat-message-right {
-    display: flex;
-    flex-shrink: 0
-}
-.closebtn {
-  position: absolute;
-  top: 20px;
-  right: 45px;
-  margin-top: 5%;
-  font-size: 60px;
-  cursor: pointer;
-  color: white;
-}
-.chat-message-left {
-    margin-right: auto
-}
-
-.chat-message-right {
-    flex-direction: row-reverse;
-    margin-left: auto
-}
-.py-3 {
-    padding-top: 1rem!important;
-    padding-bottom: 1rem!important;
-}
-.px-4 {
-    padding-right: 1.5rem!important;
-    padding-left: 1.5rem!important;
-}
-.flex-grow-0 {
-    flex-grow: 0!important;
-}
-.border-top {
-    border-top: 1px solid #dee2e6!important;
-}
-
-  </style>
-</head>
-
-<body>
-
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top">
-    <div class="container d-flex align-items-center">
-        
-      <!-- <h1 class="logo mr-auto"><a href="index.html">Mentor</a></h1> -->
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <a href="index.html" class="logo mr-auto"><img src="assets/img/Logo.png" alt="" class="img-fluid"></a>
-
-      <nav class="nav-menu d-none d-lg-block">
-        <ul>
-          <li class="active"><a href="<?= base_url()?>">Home</a></li>
-          <li><a href="<?= base_url()?>dr_paws">Dr. Paws</a></li>
-          <li><a href="<?= base_url()?>education">Healty Paws Education</a></li>
-          <li><a href="<?= base_url()?>hospital">Paws Hospital</a></li>
-          <li><a href="<?= base_url()?>recovery">Paws Recovery</a></li>
-
-        </ul>
-      </nav><!-- .nav-menu -->
-        <a href="<?=base_url()?>login" class="get-started-btn">Login</a>
-    </div>
-  </header><!-- End Header -->
-
-
-  
+<html style="font-family: Mulish, sans-serif;">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - Brand
+    </title>
+    <link rel="stylesheet" href="<?= base_url()?>Landing/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="<?= base_url()?>Landing/assets/css/styles.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+  </head>
+  <body style="font-family: Mulish, sans-serif;">
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean-search" style="font-family: Mulish, sans-serif;color: rgb(0,0,0);">
+      <div class="container">
+        <img src="<?= base_url()?>Landing/assets/img/Logo.png" style="width: 100px;">
+        <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1">
+          <span class="sr-only">Toggle navigation
+          </span>
+          <span class="navbar-toggler-icon">
+          </span>
+        </button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" href="#" style="font-family: Mulish, sans-serif;">Home
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Article
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Consultation
+              </a>
+            </li>
+          </ul>
+          <form class="form-inline mr-auto" target="_self">
+            <div class="form-group">
+              <label for="search-field">
+                <i class="fa fa-search">
+                </i>
+              </label>
+              <input class="form-control search-field" type="search" id="search-field" name="search">
+            </div>
+          </form>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+            <a class="btn btn-light nav-link action-button mr-3" role="button" href="<?=base_url()?>register" style="color: rgb(0,0,0);background: rgb(0,127,210);">Sign In</a>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-light nav-link action-button mr-3" role="button" href="<?=base_url()?>login" style="color: rgb(0,0,0);background: rgb(0,127,210);">Log In</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+   

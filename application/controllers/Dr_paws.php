@@ -5,8 +5,8 @@ class Dr_paws extends CI_Controller {
 	public function index()
 	{
 		$data['dokter'] = $this->Model_dokter->get_data();
-		$data['operasional'] = $this->Model_operasional->get_data();
-		// var_dump($data['dokter']);
+		$data['operasional'] = $this->Model_operasional->find_dataa("hari",date("l"));
+		// var_dump($data['dokter']);die();
 		// var_dump($data['operasional']);die();
 		if(isset($_SESSION['id'])){
 			if($_SESSION['id']!=0){

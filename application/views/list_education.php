@@ -1,43 +1,51 @@
-<main id="main" data-aos="fade-in">
-
-    <!-- ======= Breadcrumbs ======= -->
-    <div class="breadcrumbs">
-      <div class="container">
-        <h2>Healty Paws Education</h2>
-      </div>
-    </div><!-- End Breadcrumbs -->
-
-    <!-- ======= Courses Section ======= -->
-    <section id="courses" class="courses">
-      <div class="container" data-aos="fade-up">
-
-        <div class="row" data-aos="zoom-in" data-aos-delay="100">
-          <?php foreach($education as $key):?>
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-            <div class="course-item">
-              <img src="assets/img/course-1.jpg" class="img-fluid" alt="...">
-              <div class="course-content">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <h4><?=$key->jenis?></h4>
-                </div>
-
-                <h3><a href="<?=base_url()?>education/artikel/<?=$key->id?>"><?=$key->title?></a></h3>
-                <p><?=$key->konten_singkat?></p>
-                <div class="trainer d-flex justify-content-between align-items-center">
-                  <div class="trainer-rank d-flex align-items-center">
-                    <i class="bx bx-user"></i>&nbsp;50
-                    &nbsp;&nbsp;
-                    <i class="bx bx-heart"></i>&nbsp;65
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> 
-          <!-- End Course Item-->
-            <?php endforeach?>
+<section class="article-list">
+<div class="container">
+        <div class="intro">
+          <h2 class="text-center">Artikel Terbaru
+          </h2>
+          <p class="text-center">Informasi terbaru untuk kamu para pengguna Healthy Paws
+          </p>
         </div>
-
+        <div class="row articles">
+          <?php foreach($education as $edu){?>
+          <div class="col-sm-6 col-md-4 item">
+            <a href="#">
+              <img class="img-fluid" src="<?= $edu->image?>">
+            </a>
+            <h3 class="name"><?= $edu->title?>
+            </h3>
+            <p class="description"><?= $edu->konten_singkat?></p>
+            <a class="action" href="#">
+              <i class="fa fa-arrow-circle-right">
+              </i>
+            </a>
+          </div>
+          <?php } ?>
+        </div>
       </div>
-    </section><!-- End Courses Section -->
-
-  </main><!-- End #main -->
+    </section>
+    <section class="features-clean" style="background: #eef4f7;">
+      <div class="container">
+        <div class="intro">
+          <h2 class="text-center">Promo Terbaru
+          </h2>
+        </div>
+        <div class="row features">
+          <div class="col-sm-6 col-lg-4 item">
+            <h3 class="name">Harga khusus pengguna baru
+            </h3>
+            <img src="<?=base_url()?>Landing/assets/img/Promo.png" style="width: 100px;margin-left: 50px;">
+          </div>
+          <div class="col-sm-6 col-lg-4 item">
+            <h3 class="name">Promo bulan ramadhan
+            </h3>
+            <img src="<?=base_url()?>Landing/assets/img/Ramadhan.png" style="width: 100px;margin-left: 50px;">
+          </div>
+          <div class="col-sm-6 col-lg-4 item">
+            <h3 class="name">Pelanggan prioritas
+            </h3>
+            <img src="<?=base_url()?>Landing/assets/img/Priority.png" style="width: 100px;margin-left: 50px;">
+          </div>
+        </div>
+      </div>
+      

@@ -1,98 +1,101 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Profil extends CI_Controller {
+class Order extends CI_Controller {
 	public function index()
 	{
-		$data['profil'] = $this->Model_user->find_data($_SESSION['id'],"id");
-		if(isset($_SESSION['id'])&&isset($_SESSION['login'])){
-			$data['gambar'] =  $this->Model_user->find_data($_SESSION['id'],"id");
-			$data['notification'] =  $this->Model_order->find_data("id_user",$_SESSION['id']);
-				if($data['notification']){
-					foreach($data['notification'] as $notif){
-						$sTime = strtotime($notif->tanggal);
-						$eTime = strtotime(date("Y-m-d H:i:s"));
-						$numberDays = abs($sTime-$eTime)/86400;
-						if($numberDays > 0.020833333333333){
-							$notif->aktif = "Expired";
-						}else{
-							$notif->aktif = "Aktif";
-						}
-					}
-				}
-			$this->load->view('template/header',$data);
-			$this->load->view('profil');
-			$this->load->view('template/footer');
-		}else{
-			$this->load->view('template/header',$data);
-			$this->load->view('profil');
-			$this->load->view('template/footer');
-		}
-
-	}
-	public function edit_profil(){
-		$data['profil'] = $this->Model_user->find_data($_SESSION['id'],"id");
-		if(isset($_SESSION['id'])){
-			$data['gambar'] =  $this->Model_user->find_data($_SESSION['id'],"id");
-			$data['notification'] =  $this->Model_order->find_data("id_user",$_SESSION['id']);
-				if($data['notification']){
-					foreach($data['notification'] as $notif){
-						$sTime = strtotime($notif->tanggal);
-						$eTime = strtotime(date("Y-m-d H:i:s"));
-						$numberDays = abs($sTime-$eTime)/86400;
-						if($numberDays > 0.020833333333333){
-							$notif->aktif = "Expired";
-						}else{
-							$notif->aktif = "Aktif";
-						}
-					}
-				}
-			$this->load->view('template/header',$data);
-			$this->load->view('edit-profil');
-			$this->load->view('template/footer');
-		}else{
-			$this->load->view('template/header',$data);
-			$this->load->view('edit-profil');
-			$this->load->view('template/footer');
-		}
-	}
-
-	public function edit(){
-		$nama = $this->input->post('name');
-		$email = $this->input->post('email');
-		$password_baru = $this->input->post('password_baru');
-		$password_lama = $this->input->post('password_lama');
-		$telephone = $this->input->post('telephone');
-		$alamat = $this->input->post('alamat');
-		$gambar=$_FILES['gambar']['name'];
-		$pass = $this->Model_user->find_data($_SESSION['id'],"id");
-		if(md5($password_lama) != $pass['password'] ){
-			$this->session->set_flashdata('message', 'password salah');
-			redirect('/profil/edit-profil');
-		}
-		if($gambar=''){}else{
-			if($pass['gambar']!= base_url()."/healtypaws/assets/img/user/user.png"){
-				unlink($pass['gambar']);
-			}	
-			$config ['upload_path']='./assets/img/user/';
-			$config ['allowed_types']='jpg|jpeg|png|gif';
-			$this->load->library('upload',$config);
-			if(!$this->upload->do_upload('gambar')){
-				echo "gambar gagal";
+        $id = $this->Model_dokter->get_data();
+        foreach($id as $i){
+            if(md5($i->id)==$_GET['id']){
+                $data['dokter'] = $this->Model_dokter->find_data('id',$i->id);
+                $id_user= $i->id;
+                break;
+            }
+        }
+        $data['operasional'] = $this->Model_operasional->find_data("id_dokter","hari",$id_user,"Sunday");
+		$data['order'] = $this->Model_order->find_data("id_dokter",$data['dokter']['id']);
+		
+	
+        if(isset($_SESSION['id'])){
+			if($_SESSION['id']!=0){
+				
+				$data['gambar'] =  $this->Model_user->find_data($_SESSION['id'],"id");
+				$this->load->view('template/header',$data);
+				$this->load->view('order');
+				$this->load->view('template/footer');
 			}else{
-				$gambar = $this->upload->data('file_name');
+				redirect("login");
+			}
+		}else{
+			redirect("login");
+		}
+		
+	}
+	public function pesan(){
+		$id = $this->Model_dokter->get_data();
+        foreach($id as $i){
+            if(md5($i->id)==$_GET['id']){
+                $data['dokter'] = $this->Model_dokter->find_data('id',$i->id);
+                $id_user= $i->id;
+                break;
+            }
+        }
+        $data['operasional'] = $this->Model_operasional->find_data("id_dokter","hari",$id_user,"Sunday");
+		$data['order'] = $this->Model_order->find_data("id_user",$_SESSION['id']);
+		$sum = 1;
+		$data['bool'] = 0;
+		foreach($data['order'] as $od){
+			if($od->id_user=$_SESSION['id']){
+				$sum++;
+			}
+			if($sum > 2){
+				
+				$data['bool'] = 1;
 			}
 		}
 
+		if(isset($_SESSION['id'])){
+			if($_SESSION['id']!=0){
+				
+				$data['gambar'] =  $this->Model_user->find_data($_SESSION['id'],"id");
+				$this->load->view('template/header',$data);
+				$this->load->view('pesanan');
+				$this->load->view('template/footer');
+			}else{
+				redirect("login");
+			}
+		}else{
+			redirect("login");
+		}
+		
+	}
+	public function pay(){
+		$jam_pesan = $this->input->post('jam_pesan');
+		$jam_selesai = $this->input->post('jam_selesai');
+		$id_dokter = $this->input->post('id_dokter');
+		$harga = $this->input->post('harga');
+		$tanggal = date("Y-m-d H:i:s");
 		$data = array(
-			'name' => $nama,
-			'email' => $email,
-			'gambar' =>base_url()."assets/img/user/".$gambar,
-			'password' => md5($password_baru),
-			'telephone' => $telephone,
-			'alamat' => $alamat
+			"jam_order"=>$jam_pesan,
+			"jam_selesai"=>$jam_selesai,
+			"id_dokter"=>$id_dokter,
+			"harga"=>$harga,
 		);
-		$this->Model_user->update($data,$_SESSION['id']);
-		redirect("/profil");
-	}	
+		if($this->Model_order->find_2_data($data)){
+			redirect();
+		}else{
+			$data = array(
+				"jam_order"=>$jam_pesan,
+				"jam_selesai"=>$jam_selesai,
+				"id_dokter"=>$id_dokter,
+				"harga"=>$harga,
+				"tanggal"=>$tanggal,
+				"id_user"=>$_SESSION['id'],
+				"id_participant"=>0,
+					"active"=>0
+			);
+			$this->Model_order->add_data($data);
+			redirect();
+		}
+	}
 }

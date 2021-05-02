@@ -90,7 +90,9 @@ class Order extends CI_Controller {
 				"id_dokter"=>$id_dokter,
 				"harga"=>$harga,
 				"tanggal"=>$tanggal,
-				"id_user"=>$_SESSION['id']
+				"id_user"=>$_SESSION['id'],
+				"id_participant"=>0,
+					"active"=>0
 			);
 			$this->Model_order->add_data($data);
 			redirect();

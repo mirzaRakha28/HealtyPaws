@@ -8,5 +8,11 @@
         public function find_data($action,$action1,$data,$data1){
             return $this->db->get_where('operasional', [$action => $data,$action1=>$data1])->row_array();
         }
+        public function find_dataa($action,$data){
+            return $this->db->get_where('operasional', [$action => $data])->result();
+        }
+        // public function action_login(){
+
+        // }
     }
 ?>

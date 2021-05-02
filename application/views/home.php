@@ -1,89 +1,129 @@
- <!-- ======= Hero Section ======= -->
- <section id="hero" class="d-flex justify-content-center align-items-center">
-    <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
-      <h1>Healty Paws</h1>
-      <h2>#Revive your pet</h2>
-      <a href="courses.html" class="btn-get-started">Get Started</a>
-    </div>
-  </section><!-- End Hero -->
-
-  <main id="main">
-    <!-- ======= Why Us Section ======= -->
-    <section id="why-us" class="why-us">
-      <div class="container" data-aos="fade-up">
-
-         <div class="section-title">
-          <h2>Services</h2>
-          <p>My Services</p>
-        </div>
-          <div class="col-lg-12 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-            <div class="icon-boxes d-flex flex-column justify-content-center">
-              <div class="row">
-                <div class="col-xl-3 d-flex align-items-stretch">
-                  <a href="<?= base_url()?>dr_paws">
-                    <div class="icon-box mt-4 mt-xl-0">
-                      <i class="bx bx-receipt"></i>
-                      <h4>Dr. Paws</h4>
-                      <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
-                    </div>
-                  </a>
-                </div>
-                
-                <div class="col-xl-3 d-flex align-items-stretch">
-                  <a href="<?= base_url()?>education">
-                    <div class="icon-box mt-4 mt-xl-0">
-                      <i class="bx bx-images"></i>
-                      <h4>Healty Paws Education</h4>
-                      <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
-                    </div>
-                  </a>
-                </div>
-                <div class="col-xl-3 d-flex align-items-stretch">
-                    <a href="<?= base_url()?>hospital">
-                      <div class="icon-box mt-4 mt-xl-0">
-                        <i class="bx bx-receipt"></i>
-                        <h4>Paws Hospital</h4>
-                        <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
-                      </div>
-                    </a>
-                  </div>
-                  <div class="col-xl-3 d-flex align-items-stretch">
-                    <a href="<?= base_url()?>recovery">
-                      <div class="icon-box mt-4 mt-xl-0">
-                        <i class="bx bx-cube-alt"></i>
-                        <h4>Paws Recovery</h4>
-                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
-                      </div>
-                    </a>
-                  </div>
-                  
-              </div>
-            </div><!-- End .content-->
+<section class="highlight-phone" style="font-family: Mulish, sans-serif;height: 600px;">
+    
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="intro">
+              <h2 style="font-family: Mulish, sans-serif;">Apa itu Healthy Paws?
+              </h2>
+              <p>Healthy paws adalah layanan masa kini untuk kamu yang memerlukan jasa konsultasi mengenai kesehatan kamu secara jarak jauh.
+              </p>
+              <a class="btn btn-primary" role="button" href="#" style="background: rgb(0,127,210);">Coba sekarang
+              </a>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="d-none d-md-block phone-mockup">
+              <img src="<?= base_url()?>Landing/assets/img/Consultation.jpg" style="width: 300px;transform: rotate(14deg);">
+            </div>
           </div>
         </div>
-
       </div>
-    </section><!-- End Why Us Section -->
-    <!-- ======= Counts Section ======= -->
-    <section id="counts" class="counts section-bg">
-        <div class="container">
-            <div class="section-title">
-                <h2>Partners</h2>
-                <p>myPartner</p>
-              </div>
-        <div class="row counters">
-
-            <div class="col-lg-6 col-6 text-center">
-            <span data-toggle="counter-up">1232</span>
-            <p>dokter</p>
-            </div>
-
-            <div class="col-lg- col-6 text-center">
-            <span data-toggle="counter-up">64</span>
-            <p>rumah sakit hewan</p>
-            </div>
-
+      <div class="container" style="padding-top: 50px;">
+        <p style="text-align: center;font-size: 20;color: #000000;">Layanan Kami
+        </p>
+        <div class="row">
+          <div class="col-md-4">
+            <h2 style="font-family: Mulish, sans-serif;text-align: center;">Anjing
+            </h2>
+            <img src="<?= base_url()?>Landing/assets/img/Anjing.png" style="width: 150px;margin-left: 100px;">
+          </div>
+          <div class="col-md-4">
+            <h2 style="font-family: Mulish, sans-serif;text-align: center;">Kucing
+            </h2>
+            <img src="<?= base_url()?>Landing/assets/img/kucing.png" style="width: 120px;margin-left: 120px;">
+          </div>
+          <div class="col-md-4">
+            <h2 style="font-family: Mulish, sans-serif;text-align: center;">Lainnya
+            </h2>
+          </div>
         </div>
-
+      </div>
+    </section>
+    <section class="article-list">
+      <div class="container">
+        <div class="intro">
+          <h2 class="text-center">Latest Articles
+          </h2>
+          <p class="text-center">Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh erat, pellentesque ut laoreet vitae. 
+          </p>
         </div>
-    </section><!-- End Counts Section -->
+        <div class="row articles">
+          <div class="col-sm-6 col-md-4 item">
+            <a href="#">
+              <img class="img-fluid" src="<?= base_url()?>Landing/assets/img/desk.jpg">
+            </a>
+            <h3 class="name">Article Title
+            </h3>
+            <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.
+            </p>
+            <a class="action" href="#">
+              <i class="fa fa-arrow-circle-right">
+              </i>
+            </a>
+          </div>
+          <div class="col-sm-6 col-md-4 item">
+            <a href="#">
+              <img class="img-fluid" src="<?= base_url()?>Landing/assets/img/building.jpg">
+            </a>
+            <h3 class="name">Article Title
+            </h3>
+            <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.
+            </p>
+            <a class="action" href="#">
+              <i class="fa fa-arrow-circle-right">
+              </i>
+            </a>
+          </div>
+          <div class="col-sm-6 col-md-4 item">
+            <a href="#">
+              <img class="img-fluid" src="assets/img/loft.jpg">
+            </a>
+            <h3 class="name">Article Title
+            </h3>
+            <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.
+            </p>
+            <a class="action" href="#">
+              <i class="fa fa-arrow-circle-right">
+              </i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="features-blue" style="font-family: Mulish, sans-serif;background: #007fd2;color: #000000;">
+      <div class="container">
+        <div class="intro">
+          <h2 class="text-center" style="color: #000000;">Features
+          </h2>
+          <p class="text-center" style="color: rgb(0,0,0);">Beberapa fitur yang bisa kamu dapatkan di healthy paws
+          </p>
+        </div>
+        <div class="row features">
+          <div class="col-sm-6 col-md-4 item" style="color: #000000;">
+            <i class="fa fa-map-marker icon">
+            </i>
+            <h3 class="name">Konsultasi dimana saja
+            </h3>
+            <p class="description" style="color: rgb(0,0,0);">Dengan healthy paws kamu dapat melakukan konsultasi hanya dari genggaman tanganmu
+            </p>
+          </div>
+          <div class="col-sm-6 col-md-4 item">
+            <i class="fa fa-clock-o icon">
+            </i>
+            <h3 class="name">Jadwalkan Konsultasi
+            </h3>
+            <p class="description" style="color: rgb(0,0,0);">Lakukan penjadwalan konsultasi dengan dokter hewan.
+            </p>
+          </div>
+          <div class="col-sm-6 col-md-4 item">
+            <i class="fa fa-list-alt icon">
+            </i>
+            <h3 class="name">Dapatkan Resep
+            </h3>
+            <p class="description" style="color: rgb(0,0,0);">Dokter hewan terpercaya akan memberikan kamu resep yang sesuai dengan hasil diagnosa
+            </p>
+          </div>
+        </div>
+      </div>
+      </section>

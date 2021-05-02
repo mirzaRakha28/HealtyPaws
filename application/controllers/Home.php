@@ -1,11 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-require 'C:/xampp/htdocs/healtypaws/vendor/autoload.php';
+// require realpath('vendor/autoload.php');
+ require 'C:/xampp/htdocs/healtypaws/vendor/autoload.php';
+// require __DIR__ . '/vendor/autoload.php';
+
+
 class Home extends CI_Controller {
 	public function index()
 	{
 		if(isset($_SESSION['id'])){
 			if($_SESSION['id']!=0){
+
 				$data['chat']= $this->db->order_by('id','ASC')->get('message')->result();
 				$data['gambar'] =  $this->Model_user->find_data($_SESSION['id'],"id");
 				$data['notification'] =  $this->Model_order->find_data("id_user",$_SESSION['id']);

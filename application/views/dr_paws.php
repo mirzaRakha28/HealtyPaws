@@ -1,50 +1,43 @@
-<main id="main" data-aos="fade-in">
-
-    <!-- ======= Breadcrumbs ======= -->
-    <div class="breadcrumbs">
-      <div class="container">
-        <h2>Dr.paws</h2>
-        <p>find</p>
-      </div>
-    </div><!-- End Breadcrumbs -->
-
-    <!-- ======= Trainers Section ======= -->
-    <section id="trainers" class="trainers">
-      <div class="container" data-aos="fade-up">
-
-        <div class="row" data-aos="zoom-in" data-aos-delay="100">
-        <!--  -->
-        <?php 
-        foreach($dokter as $dok){
-                foreach($operasional as $op){
-          ?>
-          <?php if($dok->id == $op->id_dokter){
-                    ?>
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-            <div class="member">
-              <img src="<?= base_url()?>assets/img/dokter/<?= $dok->image?>" width="200"height="200"alt="">
-              <div class="member-content">
-                <h4><?= $dok->name?></h4>
-                
-                    <h6><?= $op->hari?></h6>
-                    <h6><?= $op->jam_buka?>:00 - <?= $op->jam_tutup?>:00</h6>
-                    
-                <span>Dokter Hewan</span>
-                <a href="<?= base_url()."order/?id=".md5($dok->id);?>"><button type="button" class="btn btn-success">Pilih</button></a>
+<section class="projects-horizontal">
+    <div class="container" style="background: #eef4f7;">
+        <div class="intro">
+          <h2 class="text-center">Dr. Paws
+          </h2>
+          <p class="text-center">Lakukan konsultasi sekarang dengan dokter pilihanmu
+          </p>
+        </div>
+        <div class="row projects">
+          <?php foreach ($dokter as $dok){ ?>
+          <?php foreach ($operasional as $op){ ?>
+          <?php if($dok->id ==  $op->id_dokter){ ?>
+          <div class="col-sm-6 item">
+            <div class="row">
+              <div class="col-md-12 col-lg-5">
+                <a href="#">
+                </a>
+                <img src="<?= base_url()?>assets/img/dokter/<?= $dok->image?>" style="width: 200px;">
               </div>
-              
+              <div class="col">
+                <h3 class="name"><?=$dok->name?>
+                </h3>
+                <p class="description">Alumni: <?=$dok->alumni?>
+                  <br>Tempat Praktik: <?=$dok->praktek?>
+                  <br>Lama Praktik: <?=$dok->pengalaman?> Tahun
+                  <br>
+                  <br>Biaya: Rp25.000,-
+                  <br>
+                  <br>
+                  <a class="btn btn-primary" role="button" href="#" style="background: rgb(0,127,210);">Konsultasi
+                  </a>
+                  <br>
+                </p>
+              </div>
             </div>
           </div>
-          <?php
-                    break;
-                    } 
-                }?>
-        <?php }?>
-        <!--  -->
+          <?php } ?>
+          <?php } ?>
+          <?php } ?>
         </div>
-
       </div>
-    </section><!-- End Trainers Section -->
-
-  </main><!-- End #main -->
-
+    </section>
+    

@@ -40,7 +40,7 @@ class Forgot extends CI_Controller {
 		$config['smtp_port']    = '465';
 		$config['smtp_timeout'] = '7';
 		$config['smtp_user']    = 'cshealthypaws@gmail.com';
-		$config['smtp_pass']    = 'healthypaws123';
+		$config['smtp_pass']    = 'healthypaws1234';
 		$config['charset']    = 'utf-8';
 		
 		$config['newline']    = "\r\n";
