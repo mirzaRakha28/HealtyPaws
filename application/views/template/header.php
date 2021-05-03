@@ -48,7 +48,7 @@
           </form>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" href="#">
+              <a class="nav-link " href="<?= base_url()?>home/chat">
                 <img src="<?= base_url()?>Landing/assets2/img/chat.png" style="width: 24px;">
               </a>
             </li>

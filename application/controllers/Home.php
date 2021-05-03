@@ -102,17 +102,22 @@ class Home extends CI_Controller {
 		}
 	}
 	public function chat2(){
+		
 		if(isset($_SESSION['id'])){
 			if($_SESSION['id']!=0){
+				date_default_timezone_set('Asia/Jakarta');
 				$data['gambar'] =  $this->Model_user->find_data($_SESSION['id'],"id");
 				$data['notification'] =  $this->Model_order->find_data("id_user",$_SESSION['id']);
 				$data['list_chat']= $this->Model_partisipan->find_data('id_user',$_SESSION['id']);
 				$data['dokter'] = $this->Model_dokter->get_data();
 
 				// $data['user'] =  $this->Model_user->get_data();
-				$data['chat'] =$this->db->order_by('id','ASC')->get_where('message',['id_participant'=>$_GET['id'],'id_dokter'=>$_GET['id_dokter'],'id_user'=>$_SESSION['id']])->result(); 
+				$data['chat'] =$this->db->order_by('id','ASC')->get_where('message',['id_participant'=>$_GET['id_participant'],'id_dokter'=>$_GET['id_dokter'],'id_user'=>$_SESSION['id']])->result(); 
 				// // $data['name']
-				
+				$data['not'] =   $this->db->get_where('order', ['id' => $_GET['id']])->row_array();
+				// var_dump($data['lis_cha']);die();
+				// $_SESSION['time']  =  date("H") >= ;
+	
 				// foreach($data['chat'] as $ct){	
 				// 	foreach($data['user'] as $us){
 				// 		if($ct->id_user == $us->id){
@@ -126,9 +131,23 @@ class Home extends CI_Controller {
 				// 	}
 					
 				// }
-				
-				// var_dump($data['dokter']);die();
-				foreach($data['list_chat'] as $lc){	
+				date_default_timezone_set('Asia/Jakarta');
+				$txt ="";
+				for($a = 0 ; $a < 9;$a++){
+					$txt.=$data["not"]['tanggal'][$a];
+				}
+				if($txt > date('Y-m-d ')){
+					$_SESSION['end'] = false;
+				}else if($data['not']['jam_order'] > date("H")){
+					$_SESSION['end'] = false;
+				}else if($data['not']['jam_selesai'] < date("H")){
+					$_SESSION['end'] = false;
+				}else{
+					$_SESSION['end'] = true;
+				}
+
+
+				foreach($data['notification'] as $lc){	
 				foreach($data['dokter'] as $us){
 					if($lc->id_dokter == $us->id){
 						$lc->{"gambar"}=$us->image;
@@ -188,12 +207,11 @@ class Home extends CI_Controller {
 		$data =  $this->db->insert('message',$data);
 		
 		if($data){
-			$pusher->trigger('my-channel', 'my-event', $data);
 			$push= $this->db->order_by('id', 'ASC');	
 			$push = $this->db->order_by('id','ASC')->get_where('message',['id_participant'=>$this->input->post('id_participant')])->result();
 			foreach($push as $key){
-			  $data_pusher[] =$key;
-		  } 
+				$data_pusher[] =$key;
+			} 
 			$pusher->trigger('my-channel', 'my-event', $data_pusher);
 		}
 		

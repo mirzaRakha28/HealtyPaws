@@ -29,7 +29,19 @@ class Admin_dokter extends CI_Controller {
 	
 	}
 	public function edit_jadwal(){
-		var_dump($this->input->post('hari'));die();
+		if($this->input->post('active') == "Buka"){
+			$act = 1;
+		} else {
+			$act = 0;
+		}
+		$data = array(
+			"hari" => $this->input->post('hari'),
+			"jam_buka" => $this->input->post('jam_buka'),
+			"jam_tutup" => $this->input->post('jam_tutup'),
+			"active" => $act
+		);
+		$this->Model_operasional->update_data($data,$_SESSION['id_dokter']);
+		redirect("admin_dokter/profil");
 	}
 	public function action_login(){
 		$data = array(
@@ -113,7 +125,7 @@ class Admin_dokter extends CI_Controller {
 			$data['dokter']= $user = $this->Model_dokter->find_data('id',$_SESSION['id_dokter']);
 			$data['user'] =  $this->Model_user->get_data();
 			$data['list_chat']= $this->Model_partisipan->find_data('id_dokter',$_SESSION['id_dokter']);
-
+			
 			foreach($data['list_chat'] as $lc){	
 				foreach($data['user'] as $us){
 					if($lc->id_user == $us->id){
@@ -123,7 +135,7 @@ class Admin_dokter extends CI_Controller {
 				}
 			}
 			$this->load->view('template_dokter/header',$data);
-			$this->load->view('admin_dokter/chat');
+			$this->load->view('admin_dokter/chat2');
 			$this->load->view('template_dokter/footer');
 		}else{
 			$data['dokter']= $user = $this->Model_dokter->find_data('id',$_SESSION['id_dokter']);
@@ -140,14 +152,13 @@ class Admin_dokter extends CI_Controller {
 					}
 				}
 			}
+			
 			$this->load->view('template_dokter/header',$data);
 			$this->load->view('admin_dokter/chat');
 			$this->load->view('template_dokter/footer');
 		}
 	}
 	public function chat2(){
-		$_GET["id_user"] =69;
-		$_GET["id"]=3;
 		if(isset($_GET["id"])&&isset($_GET["id_user"])){
 			$data['dokter']= $user = $this->Model_dokter->find_data('id',$_SESSION['id_dokter']);
 			$data['user'] =  $this->Model_user->get_data();
@@ -180,7 +191,7 @@ class Admin_dokter extends CI_Controller {
 				
 			}
 			$this->load->view('template_dokter/header',$data);
-			$this->load->view('admin_dokter/chat');
+			$this->load->view('admin_dokter/chat2');
 			$this->load->view('template_dokter/footer');
 		}else{
 			$data['dokter']= $user = $this->Model_dokter->find_data('id',$_SESSION['id_dokter']);

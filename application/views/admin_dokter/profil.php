@@ -512,7 +512,7 @@
                 </select>
             </div>
             <div class="form-group">
-            <select class="form-control" name="hari" id="sel1">
+            <select class="form-control" name="active" id="sel1">
                 <option>Buka</option>
                 <option>Tutup</option>
             </select>

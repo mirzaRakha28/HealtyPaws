@@ -11,6 +11,15 @@
         public function find_dataa($action,$data){
             return $this->db->get_where('operasional', [$action => $data])->result();
         }
+        public function update_data($data,$id){
+            $this->db->set('hari', $data['hari']);
+            $this->db->set('jam_buka', $data['jam_buka']);
+            $this->db->set('jam_tutup', $data['jam_tutup']);
+            $this->db->set('active', $data['active']);
+            $this->db->where('id_dokter', $id);
+            $this->db->where('hari', $data['hari']);
+            $this->db->update('operasional');
+        }
         // public function action_login(){
 
         // }

@@ -27,7 +27,7 @@
                   <br>Biaya: Rp25.000,-
                   <br>
                   <br>
-                  <a class="btn btn-primary" role="button" href="#" style="background: rgb(0,127,210);">Konsultasi
+                  <a class="btn btn-primary"  role="button" href="<?= base_url()."order/?id=".md5($dok->id);?>" style="background: rgb(0,127,210);">Konsultasi
                   </a>
                   <br>
                 </p>
